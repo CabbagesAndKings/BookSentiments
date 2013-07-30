@@ -17,7 +17,6 @@ df.sentiments$term <- gsub("[^[:alnum:]]", " ",df.sentiments$term)
 #row.names(df.sentiments) <- df.sentiments$term
 
 ScoreTerm <- function(term){
-	
 	df.sentiments[match(term,df.sentiments[,"term"]),"score"]
 }
 
@@ -40,13 +39,11 @@ s <- ScoreText(book.file)
 ###Part 2: Visualization###
 
 author <- 'dickens'
-#book.label.list <- c('aliceinwonderland', 'threemeninaboat')
 book.label.list <- c('achristmascarol','ataleoftwocities','bleakhouse','davidcopperfield','hardtimes','nicholasnickleby','olivertwist')
 
 book.file.list <- paste0("data/", author, "/", book.label.list, ".txt")
 
 scores <- lapply(book.file.list, ScoreText)
-s1<-ScoreText("C:/Users/eeshanmalhotra/Desktop/2.txt")
 RollUpScores <-function(scores, parts=100){
 	batch.size <- round(length(scores)/parts,0)
 	
