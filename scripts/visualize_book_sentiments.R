@@ -3,6 +3,9 @@ setwd('C:/etc/Projects/Data/_Ongoing/BookSentiment')
 library(ggplot2)
 library(reshape2)
 
+##############################
+###Part 1: Scoring a text ####
+
 sentiment.file <- "data/AFINN-111.txt"
 book.label <- "misc/threemeninaboat"
 book.file <- paste0("data/",book.label,".txt")
@@ -33,8 +36,8 @@ ScoreText <- function(book.file){
 s <- ScoreText(book.file)
 
 
-#########################
-##Part 2: Visualization##
+###########################
+###Part 2: Visualization###
 
 author <- 'dickens'
 #book.label.list <- c('aliceinwonderland', 'threemeninaboat')
@@ -77,8 +80,6 @@ g1 <- g + geom_tile(aes(fill = sentiment)) +
 		scale_y_continuous(expand = c(0,0))
 g1
 g1 + theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) 
-
-
 
 
 

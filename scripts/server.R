@@ -82,9 +82,6 @@ shinyServer(function(input, output) {
 	})
 
 	
-	
-	
-	
 	output$sentimentheatmap <- renderPlot({
 		
 		inFile <- input$file1

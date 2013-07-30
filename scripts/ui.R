@@ -29,8 +29,6 @@ shinyUI(pageWithSidebar(
 		tags$hr(),
 		
 		checkboxInput('showPoints', 'Show Points', FALSE),
-		
-		
 		checkboxInput('movavg', 'Use Moving Averages', FALSE)
 		
 		
