@@ -1,9 +1,9 @@
 shinyServer(function(input, output) {
 	
-	library(ggplot2)
-	library(reshape2)
+	require(ggplot2)
+	require(reshape2)
 	
-	sentiment.file <- "C:/etc/Projects/Data/_Ongoing/Book Sentiment/data/AFINN-111.txt"
+	sentiment.file <- "../data/AFINN-111.txt"
 		
 	
 	#Initialize sentiment dictionary
@@ -62,12 +62,12 @@ shinyServer(function(input, output) {
 		df.percent.scores=data.frame(part=1:nparts,sentiment=percent.scores)
 		
 		g  <- ggplot(df.percent.scores, aes(x = part, y = sentiment))
-		g2 <- g + geom_point() + stat_smooth(method="loess") + geom_hline() +
+		g2 <- g + geom_point() + stat_smooth(method="loess", span=(0.0005*nparts)+0.8) + geom_hline() +
 				xlab("Part") + ylab("Sentiment") +
 				ggtitle("Sentiment Variation Through the Book\n") +
 				scale_x_continuous(expand = c(0,0))
 	
-		g3 <- g + stat_smooth(method="loess") + geom_hline() +
+		g3 <- g + stat_smooth(method="loess",span=(-0.0005*nparts)+0.8) + geom_hline() +
 				xlab("Part") + ylab("Sentiment") +
 				ggtitle("Sentiment Variation Through the Book\n") +
 				scale_x_continuous(expand = c(0,0))

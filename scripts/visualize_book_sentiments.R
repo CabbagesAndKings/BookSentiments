@@ -59,11 +59,11 @@ percent.scores <- as.data.frame(sapply(scores,RollUpScores))
 colnames(percent.scores)<-book.label.list
 percent.scores$percent <- 1:nrow(percent.scores)
 
-escores <- melt(percent.scores[,6:8],"percent",book.label.list[6:7],variable.name="book",value.name="sentiment")
-g<- ggplot(escores, aes(x = percent, y = sentiment, color=factor(book)))
+escores <- melt(percent.scores[,c(1,8)],"percent",book.label.list[1],variable.name="book",value.name="sentiment")
+g0<- ggplot(escores, aes(x = percent, y = sentiment, color=factor(book)))
 
-g + geom_point() + stat_smooth(method="loess") + geom_hline() + facet_grid(book ~.) + theme(legend.position="none")
-g + stat_smooth(method="loess") + geom_hline() +  theme(legend.position="bottom")
+g0 + geom_point() + stat_smooth(method="loess",span=0.5) + geom_hline() + facet_grid(book ~.) + theme(legend.position="none")
+g0 + stat_smooth(method="loess") + geom_hline() +  theme(legend.position="bottom")
 
 
 
@@ -77,6 +77,7 @@ g1 <- g + geom_tile(aes(fill = sentiment)) +
 		scale_y_continuous(expand = c(0,0))
 g1
 g1 + theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) 
+
 
 
 
